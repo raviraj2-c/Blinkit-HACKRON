@@ -37,6 +37,9 @@ function App() {
   };
 
   return (
+
+    <div class="container">
+    <div class="box left">
     <div className="App">
       <h1>Face Recognition App</h1>
       {modelsLoaded ? (
@@ -49,6 +52,10 @@ function App() {
         <p>Loading models...</p>
       )}
     </div>
+    </div>
+    <div class="box right">Right Div</div>
+</div>
+    
   );
 }
 
