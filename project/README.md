@@ -1,244 +1,70 @@
-# 🚀 Blinkit Clone
+# Getting Started with Create React App
 
-A full-stack e-commerce application built with React, Node.js, and MySQL, inspired by Blinkit.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## 📋 Tech Stack
+## Available Scripts
 
-### Frontend
-- React 18 with Vite
-- TypeScript
-- Tailwind CSS
-- Lucide React (for icons)
-- React Router DOM (for routing)
-- React Query (for data fetching)
-- Zod (for form validation)
+In the project directory, you can run:
 
-### Backend
-- Node.js & Express
-- MySQL
-- JWT for authentication
-- Prisma (ORM)
-- Express Validator
-- Multer (for file uploads)
+### `npm start`
 
-## 🛠️ Project Setup
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### Prerequisites
-- Node.js (v18 or higher)
-- MySQL (v8 or higher)
-- Git
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-### Frontend Setup (Current Directory)
+### `npm test`
 
-1. Install dependencies:
-```bash
-npm install
-```
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-2. Create `.env` file:
-```env
-VITE_API_URL=http://localhost:5000
-```
+### `npm run build`
 
-3. Start development server:
-```bash
-npm run dev
-```
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### Backend Setup (Create New Directory)
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-1. Create backend directory:
-```bash
-mkdir blinkit-backend
-cd blinkit-backend
-```
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-2. Initialize project:
-```bash
-npm init -y
-```
+### `npm run eject`
 
-3. Install dependencies:
-```bash
-npm install express cors dotenv mysql2 prisma @prisma/client jsonwebtoken bcryptjs express-validator multer
-```
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-4. Create `.env` file:
-```env
-PORT=5000
-JWT_SECRET=your_jwt_secret
-DATABASE_URL="mysql://user:password@localhost:3306/blinkit"
-```
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-5. Initialize Prisma:
-```bash
-npx prisma init
-```
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-## 📁 Project Structure
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-### Frontend Structure
-```
-src/
-├── components/         # Reusable UI components
-│   ├── ui/            # Basic UI components
-│   ├── layout/        # Layout components
-│   └── features/      # Feature-specific components
-├── pages/             # Page components
-├── hooks/             # Custom hooks
-├── lib/               # Utility functions
-├── types/             # TypeScript types
-├── services/          # API services
-├── store/             # State management
-└── styles/            # Global styles
-```
+## Learn More
 
-### Backend Structure
-```
-src/
-├── controllers/       # Request handlers
-├── models/           # Prisma models
-├── routes/           # API routes
-├── middleware/       # Custom middleware
-├── utils/            # Utility functions
-├── config/           # Configuration files
-└── services/         # Business logic
-```
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-## 🗄️ Database Schema
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-```sql
--- Users Table
-CREATE TABLE users (
-    id VARCHAR(36) PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    phone VARCHAR(15),
-    address TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+### Code Splitting
 
--- Categories Table
-CREATE TABLE categories (
-    id VARCHAR(36) PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    image_url VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
--- Products Table
-CREATE TABLE products (
-    id VARCHAR(36) PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description TEXT,
-    price DECIMAL(10,2) NOT NULL,
-    image_url VARCHAR(255),
-    category_id VARCHAR(36),
-    stock INT NOT NULL DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (category_id) REFERENCES categories(id)
-);
+### Analyzing the Bundle Size
 
--- Orders Table
-CREATE TABLE orders (
-    id VARCHAR(36) PRIMARY KEY,
-    user_id VARCHAR(36),
-    total_amount DECIMAL(10,2) NOT NULL,
-    status ENUM('pending', 'processing', 'delivered', 'cancelled'),
-    delivery_address TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
--- Order Items Table
-CREATE TABLE order_items (
-    id VARCHAR(36) PRIMARY KEY,
-    order_id VARCHAR(36),
-    product_id VARCHAR(36),
-    quantity INT NOT NULL,
-    price DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES orders(id),
-    FOREIGN KEY (product_id) REFERENCES products(id)
-);
-```
+### Making a Progressive Web App
 
-## 🔐 API Endpoints
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Authentication
-- POST /api/auth/register
-- POST /api/auth/login
-- GET /api/auth/me
+### Advanced Configuration
 
-### Products
-- GET /api/products
-- GET /api/products/:id
-- POST /api/products (Admin)
-- PUT /api/products/:id (Admin)
-- DELETE /api/products/:id (Admin)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Categories
-- GET /api/categories
-- POST /api/categories (Admin)
-- PUT /api/categories/:id (Admin)
-- DELETE /api/categories/:id (Admin)
+### Deployment
 
-### Orders
-- GET /api/orders
-- POST /api/orders
-- GET /api/orders/:id
-- PUT /api/orders/:id/status (Admin)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-## 🚀 Development Workflow
+### `npm run build` fails to minify
 
-1. Start the MySQL server
-2. Run the backend server:
-```bash
-cd backend
-npm run dev
-```
-
-3. Run the frontend development server:
-```bash
-cd frontend
-npm run dev
-```
-
-## 📱 Features to Implement
-
-- [ ] User authentication
-- [ ] Product catalog with categories
-- [ ] Shopping cart
-- [ ] Order management
-- [ ] Real-time order tracking
-- [ ] Admin dashboard
-- [ ] Payment integration
-- [ ] Search functionality
-- [ ] Filter and sort products
-- [ ] User reviews and ratings
-
-## 🔒 Security Considerations
-
-- Implement JWT for secure authentication
-- Use bcrypt for password hashing
-- Input validation and sanitization
-- CORS configuration
-- Rate limiting
-- XSS protection
-- CSRF protection
-- Secure headers
-
-## 🌟 Future Enhancements
-
-- Real-time delivery tracking
-- Push notifications
-- Payment gateway integration
-- Analytics dashboard
-- Mobile app development
-- Performance optimization
-- Caching implementation
-- SEO optimization
-
-## 📄 License
-
-MIT License
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
