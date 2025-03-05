@@ -44,6 +44,23 @@ const FaceRecognition = ({ videoRef, handleVideoOnPlay, detections }) => {
     }
   }, [detections, videoRef]);
 
+  // Check for facial expressions
+  useEffect(() => {
+    if (detections.length > 0) {
+      detections.forEach(detection => {
+        const { expressions } = detection;
+        
+        if (expressions.sad > 0.5) {
+          alert("Someone looks sad 😞");
+        } else if (expressions.neutral > 0.5) {
+          alert("Someone has a neutral expression 😐");
+        } else if (expressions.happy > 0.5) {
+          alert("Someone looks happy 😊");
+        }
+      });
+    }
+  }, [detections]); // Runs whenever detections update
+
   const captureImage = () => {
     const video = videoRef.current;
 
