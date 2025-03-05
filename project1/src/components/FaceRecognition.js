@@ -51,7 +51,7 @@ const FaceRecognition = ({ videoRef, handleVideoOnPlay, detections }) => {
         const { expressions } = detection;
         
         if (expressions.sad > 0.5) {
-          alert("Someone looks sad 😞");
+          alert("there is a thief 😞");
         } else if (expressions.neutral > 0.5) {
           alert("Someone has a neutral expression 😐");
         } else if (expressions.happy > 0.5) {
