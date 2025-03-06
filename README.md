@@ -22,17 +22,21 @@ Our system uses **AI-powered face recognition, real-time monitoring, and role-ba
 
 ## 🖼️ Interface Screenshots  
 
+### **4️⃣ Alerts & Monitoring**  
+![Alerts](./image/image4.jpg)  
+
+### **3️⃣ Face Recognition Access**  
+![Face Recognition](./image/image3.jpg)  
+
 ### **1️⃣ Login Page**  
 ![Login Page](./image/image1.jpg)  
 
 ### **2️⃣ Dashboard**  
 ![Dashboard](./image/image2.jpg)  
 
-### **3️⃣ Face Recognition Access**  
-![Face Recognition](./image/image3.jpg)  
 
-### **4️⃣ Alerts & Monitoring**  
-![Alerts](./image/image4.jpg)  
+
+
 
 ---
 
